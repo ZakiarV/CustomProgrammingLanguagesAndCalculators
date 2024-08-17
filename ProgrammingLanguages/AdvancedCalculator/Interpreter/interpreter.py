@@ -67,5 +67,3 @@ class Interpreter:
                 return math.sqrt(self.evaluate(node.arguments[0]))
         elif node.operation.type == TokenTypes.LN:
             return math.log(self.evaluate(node.arguments[0]), math.e)
-        else:
-            print(node)
