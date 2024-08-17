@@ -1,4 +1,4 @@
-from ProgrammingLanguages.AdvancedCalculator.access import Access as AdvancedCalculatorAccess
+from Calculators.AdvancedCalculator import Access as AdvancedCalculatorAccess
 
 def main():
     equation = input("Enter an equation: ")
