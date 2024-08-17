@@ -1,9 +1,9 @@
-from ProgrammingLanguages.BasicCalculator.access import Access as BasicCalculatorAccess
+from ProgrammingLanguages.AdvancedCalculator.access import Access as AdvancedCalculatorAccess
 
 def main():
     equation = input("Enter an equation: ")
-    access = BasicCalculatorAccess(equation)
-    result = access.calculate()
+    access = AdvancedCalculatorAccess(equation)
+    result = access.interpret()
     print(f"The result is: {result}")
 
 
