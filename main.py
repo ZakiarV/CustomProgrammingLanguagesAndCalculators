@@ -1,10 +1,14 @@
-from Calculators.AdvancedCalculator import Access as AdvancedCalculatorAccess
+from Calculators.AdvancedCalculatorWithVariables.access import Access as AdvancedCalculatorAccess
 
 def main():
     equation = input("Enter an equation: ")
-    access = AdvancedCalculatorAccess(equation)
-    result = access.interpret()
-    print(f"The result is: {result}")
+    access = AdvancedCalculatorAccess()
+    while True:
+        if equation == "exit":
+            break
+        result = access.interpret(equation)
+        print(f"The result is: {result}")
+        equation = input("Enter an equation: ")
 
 
 if __name__ == '__main__':
