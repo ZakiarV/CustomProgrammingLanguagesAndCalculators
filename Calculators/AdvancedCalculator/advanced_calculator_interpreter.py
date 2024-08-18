@@ -4,18 +4,12 @@ from .Interpreter.interpreter import Interpreter
 
 
 class AdvancedCalculatorInterpreter:
-    def __init__(self, expression):
-        self.lexer = None
-        self.parser = None
-        self.expression = expression
-        self.interpreter = None
+    def __init__(self):
+        self.lexer = Lexer()
+        self.parser = Parser()
+        self.interpreter = Interpreter()
 
-
-    def interpret(self):
-        self.lexer = Lexer(self.expression)
-        self.lexer.tokenize()
-        self.parser = Parser(self.lexer.tokens)
-        ast = self.parser.parse()
-        self.interpreter = Interpreter(ast)
-        self.interpreter.interpret()
-        return self.interpreter.result
+    def calculate(self, equation):
+        self.lexer.tokenize(equation)
+        ast = self.parser.parse(self.lexer.tokens)
+        return self.interpreter.interpret(ast)

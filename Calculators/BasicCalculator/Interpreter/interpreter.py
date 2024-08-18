@@ -3,12 +3,13 @@ from ..Tokens.token_types import TokenTypes
 
 
 class Interpreter:
-    def __init__(self, ast):
-        self.ast = ast
+    def __init__(self):
+        self.ast = None
         self.result = None
 
-    def interpret(self):
-        self.result = self.evaluate(self.ast)
+    def interpret(self, ast):
+        self.result = self.evaluate(ast)
+        return self.result
 
     def evaluate(self, node):
         if isinstance(node, Number):

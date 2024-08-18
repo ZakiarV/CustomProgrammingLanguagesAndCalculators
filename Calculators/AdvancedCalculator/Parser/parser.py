@@ -3,11 +3,12 @@ from .nodes import BinaryExpression, Number, SpecialOperation
 
 
 class Parser:
-    def __init__(self, tokens):
-        self.tokens = tokens
+    def __init__(self):
+        self.tokens = []
         self.ast = []
 
-    def parse(self):
+    def parse(self, tokens):
+        self.tokens = tokens
         self.ast = self.expression()
         return self.ast
 

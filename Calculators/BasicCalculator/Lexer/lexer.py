@@ -3,11 +3,12 @@ from ..Tokens.tokens import Token
 
 
 class Lexer:
-    def __init__(self, equation):
-        self.equation = list(equation)
+    def __init__(self):
+        self.equation = None
         self.tokens = []
 
-    def tokenize(self):
+    def tokenize(self, equation):
+        self.equation = list(equation)
         while len(self.equation) > 0:
             c = self.equation.pop(0)
             if c in ' \t':
