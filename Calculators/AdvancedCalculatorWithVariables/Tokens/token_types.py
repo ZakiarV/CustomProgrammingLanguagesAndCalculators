@@ -21,12 +21,17 @@ class TokenTypes(Enum):
     SQRT = 17
     LN = 18
     NONE = 19
+
     ASSIGN = 20
     VARIABLE = 21
+
     EQUALS = 22
     LESS_THAN = 23
     GREATER_THAN = 24
     LESS_THAN_OR_EQUAL = 25
     GREATER_THAN_OR_EQUAL = 26
     NOT_EQUAL = 27
+
+    PI = 28
+    E = 29
 

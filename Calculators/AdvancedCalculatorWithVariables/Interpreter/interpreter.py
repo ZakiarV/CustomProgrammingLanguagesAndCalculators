@@ -35,7 +35,6 @@ class Interpreter:
         variable = node.variable
         value = self.evaluate(node.value)
         self.environment.assign(variable, value)
-        print(node)
         return value
 
     def evaluate_comparison(self, node):

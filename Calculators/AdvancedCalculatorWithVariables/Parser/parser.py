@@ -1,3 +1,4 @@
+import math
 from Calculators.AdvancedCalculatorWithVariables.Tokens.token_types import TokenTypes
 from .nodes import BinaryExpression, Number, SpecialOperation, ComparisonNode, AssignmentNode, VariableNode
 
@@ -59,6 +60,10 @@ class Parser:
             return VariableNode(token.value)
         elif token.type == TokenTypes.NONE:
             return Number(None)
+        elif token.type == TokenTypes.PI:
+            return Number(math.pi)
+        elif token.type == TokenTypes.E:
+            return Number(math.e)
         elif token.type == TokenTypes.LPAREN:
             node = self.expression()
             self.tokens.pop(0)

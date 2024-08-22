@@ -21,3 +21,6 @@ class Environment:
 
     def define(self, variable, value):
         self.variables[variable] = value
+
+    def clear(self):
+        self.variables = {}

@@ -18,8 +18,11 @@ class Lexer:
                 while len(self.list_equation) > 0 and self.list_equation[0] in '0123456789.':
                     number += self.list_equation.pop(0)
                 self.tokens.append(Token(TokenTypes.NUMBER, float(number)))
-            elif c.lower() in 'abcdefghijklmnopqrstuvwxyz':
-                self.special_operations(c)
+            elif c in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                if c == 'e':
+                    self.tokens.append(Token(TokenTypes.E))
+                else:
+                    self.special_operations(c.lower())
             elif c == ',':
                 self.tokens.append(Token(TokenTypes.COMMA))
                 if len(self.list_equation) > 0 and self.list_equation[0] == ')':
@@ -94,5 +97,7 @@ class Lexer:
             self.tokens.append(Token(TokenTypes.SQRT))
         elif special_operation == 'ln':
             self.tokens.append(Token(TokenTypes.LN))
+        elif special_operation == 'pi':
+            self.tokens.append(Token(TokenTypes.PI))
         else:
             self.tokens.append(Token(TokenTypes.VARIABLE, special_operation))
