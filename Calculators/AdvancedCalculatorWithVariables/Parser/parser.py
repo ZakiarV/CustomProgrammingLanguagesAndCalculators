@@ -1,12 +1,13 @@
 import math
 from Calculators.AdvancedCalculatorWithVariables.Tokens.token_types import TokenTypes
+from Calculators.AdvancedCalculatorWithVariables.Tokens.tokens import Token
 from .nodes import BinaryExpression, Number, SpecialOperation, ComparisonNode, AssignmentNode, VariableNode
 
 
 class Parser:
     def __init__(self):
         self.tokens = []
-        self.ast = []
+        self.ast = None
 
     def parse(self, tokens):
         self.tokens = tokens
@@ -68,23 +69,28 @@ class Parser:
             node = self.expression()
             self.tokens.pop(0)
             return node
+        elif token.type == TokenTypes.RADS or token.type == TokenTypes.DEGREES:
+            return token
         elif token.type in (TokenTypes.LN, TokenTypes.SIN, TokenTypes.COS,
                             TokenTypes.TAN, TokenTypes.COT, TokenTypes.CSC,
                             TokenTypes.SEC):
-            self.tokens.pop(0)
-            node = [self.expression()]
-            self.tokens.pop(0)
-            return SpecialOperation(token, node)
+            arguments = self.get_arguments(token)
+            return SpecialOperation(token, arguments)
         elif token.type in (TokenTypes.LOG, TokenTypes.SQRT):
-            arguments = self.get_arguments()
+            arguments = self.get_arguments(token)
             return SpecialOperation(token, arguments)
         else:
             raise ValueError(f'Invalid token: {token}')
 
-    def get_arguments(self):
+    def get_arguments(self, special_operation):
         arguments = []
         while self.tokens[0].type != TokenTypes.RPAREN:
             self.tokens.pop(0)
-            arguments.append(self.expression())
+            arguments.append(self.addition_subtraction())
+        if len(arguments) < 2 and special_operation.type in (TokenTypes.LN, TokenTypes.SIN, TokenTypes.COS,
+                                                             TokenTypes.TAN, TokenTypes.COT, TokenTypes.CSC,
+                                                             TokenTypes.SEC):
+            arguments.append(Token(TokenTypes.RADS))
         self.tokens.pop(0)
+        print(len(arguments))
         return arguments

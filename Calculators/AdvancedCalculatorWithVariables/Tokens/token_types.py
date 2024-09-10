@@ -35,3 +35,6 @@ class TokenTypes(Enum):
     PI = 28
     E = 29
 
+    RADS = 30
+    DEGREES = 31
+

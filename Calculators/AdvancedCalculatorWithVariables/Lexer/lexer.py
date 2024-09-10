@@ -99,5 +99,9 @@ class Lexer:
             self.tokens.append(Token(TokenTypes.LN))
         elif special_operation == 'pi':
             self.tokens.append(Token(TokenTypes.PI))
+        elif special_operation == 'rads':
+            self.tokens.append(Token(TokenTypes.RADS))
+        elif special_operation == 'degrees':
+            self.tokens.append(Token(TokenTypes.DEGREES))
         else:
             self.tokens.append(Token(TokenTypes.VARIABLE, special_operation))

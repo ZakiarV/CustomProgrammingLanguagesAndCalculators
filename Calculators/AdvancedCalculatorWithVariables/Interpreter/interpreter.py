@@ -73,11 +73,11 @@ class Interpreter:
 
     def evaluate_special_operation(self, node):
         if node.operation.type == TokenTypes.COS:
-            return math.cos(self.evaluate(node.arguments[0]))
+            return math.cos(self.evaluate(node.arguments[0]) if node.arguments[1].type == TokenTypes.RADS else math.radians(self.evaluate(node.arguments[0])))
         elif node.operation.type == TokenTypes.SIN:
-            return math.sin(self.evaluate(node.arguments[0]))
+            return math.sin(self.evaluate(node.arguments[0]) if node.arguments[1].type == TokenTypes.RADS else math.radians(self.evaluate(node.arguments[0])))
         elif node.operation.type == TokenTypes.TAN:
-            return math.tan(self.evaluate(node.arguments[0]))
+            return math.tan(self.evaluate(node.arguments[0]) if node.arguments[1].type == TokenTypes.RADS else math.radians(self.evaluate(node.arguments[0])))
         elif node.operation.type == TokenTypes.LOG:
             if len(node.arguments) > 1:
                 if node.arguments[1].value is not None:
@@ -87,11 +87,11 @@ class Interpreter:
             else:
                 return math.log(self.evaluate(node.arguments[0]), 10)
         elif node.operation.type == TokenTypes.SEC:
-            return 1 / math.cos(self.evaluate(node.arguments[0]))
+            return 1 / math.cos(self.evaluate(node.arguments[0]) if node.arguments[1].type == TokenTypes.RADS else math.radians(self.evaluate(node.arguments[0])))
         elif node.operation.type == TokenTypes.CSC:
-            return 1 / math.sin(self.evaluate(node.arguments[0]))
+            return 1 / math.sin(self.evaluate(node.arguments[0]) if node.arguments[1].type == TokenTypes.RADS else math.radians(self.evaluate(node.arguments[0])))
         elif node.operation.type == TokenTypes.COT:
-            return 1 / math.tan(self.evaluate(node.arguments[0]))
+            return 1 / math.tan(self.evaluate(node.arguments[0]) if node.arguments[1].type == TokenTypes.RADS else math.radians(self.evaluate(node.arguments[0])))
         elif node.operation.type == TokenTypes.SQRT:
             if len(node.arguments) > 1:
                 if node.arguments[1].value is not None:
